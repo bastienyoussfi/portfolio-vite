@@ -1,40 +1,44 @@
 import React from "react";
 import { Project } from "../../types";
-import { Github } from 'lucide-react';
+import { Github } from "lucide-react";
 
 interface ProjectCardProps {
   project: Project;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   return (
-    <div className="group relative bg-gray-900 rounded-lg overflow-hidden transform hover:scale-[1.02] transition-all">
-      <div className="aspect-w-16 aspect-h-9">
+    <div className="group relative bg-gray-900 overflow-hidden">
+      <div className="aspect-w-16 aspect-h-9 bg-gray-800">
         <img
           src={project.imageUrl}
           alt={project.title}
-          className="object-cover"
+          className="object-cover transform group-hover:scale-105 transition-transform duration-300"
         />
       </div>
       <div className="p-6 space-y-4">
-        <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-        <p className="text-gray-400">{project.description}</p>
+        <h3 className="text-xl font-semibold text-white group-hover:text-gray-300 transition">
+          {project.title}
+        </h3>
+        <p className="text-gray-400 text-sm line-clamp-2">
+          {project.description}
+        </p>
         <div className="flex flex-wrap gap-2">
           {project.technologies.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 text-sm rounded-full bg-purple-900/50 text-purple-300"
+              className="px-3 py-1 text-xs border border-gray-800 text-gray-400"
             >
               {tech}
             </span>
           ))}
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 pt-2">
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-purple-400 transition"
+            className="text-gray-400 hover:text-white transition"
           >
             <Github size={20} />
           </a>
@@ -43,9 +47,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-purple-400 transition"
+              className="text-gray-400 hover:text-white transition"
             >
-              <span>Live Demo →</span>
+              Live Demo →
             </a>
           )}
         </div>

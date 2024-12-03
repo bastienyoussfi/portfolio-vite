@@ -1,27 +1,25 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Layout/Navbar";
-import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import Blog from "./pages/Blog";
-import About from "./pages/About";
+import { motion } from 'framer-motion';
+import CursorFollower from './components/CursorFollower/CursorFollower';
+import Navigation from './components/Navigation/Navigation';
+import Hero from './components/Home/Hero';
+import WorkGrid from './components/WorkGrid/WorkGrid';
 
-const App: React.FC = () => {
+export default function App() {
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-900">
-        <Navbar />
-        <main className="pt-16">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+    <div className="bg-black text-white">
+      <CursorFollower />
+      <Navigation />
+      <Hero />
+      <motion.section
+        id="work"
+        className="py-20 px-4 max-w-7xl mx-auto"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+      >
+        <WorkGrid />
+      </motion.section>
+      {/* Add other sections */}
+    </div>
   );
-};
-
-export default App;
+}
