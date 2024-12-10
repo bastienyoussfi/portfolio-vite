@@ -2,10 +2,6 @@ import React from "react";
 import { Project } from "../../types";
 import { Github } from "lucide-react";
 
-interface ProjectCardProps {
-  project: Project;
-}
-
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   return (
     <div className="group relative bg-gray-900 overflow-hidden">
